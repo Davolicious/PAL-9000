@@ -1,0 +1,34 @@
+{
+  "name": "pal-9000",
+  "version": "1.0.0",
+  "description": "A modular, extensible Discord bot with community-specific flavors",
+  "main": "index.js",
+  "scripts": {
+  "build": "tsc",
+  "start": "node dist/index.js",
+  "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+  "lint": "eslint src/**/*.ts"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davolicious/PAL-9000.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Davolicious/PAL-9000/issues"
+  },
+  "homepage": "https://github.com/Davolicious/PAL-9000#readme",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.26.2",
+    "dotenv": "^17.4.1"
+  }
+}
