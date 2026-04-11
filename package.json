@@ -4,10 +4,12 @@
   "description": "A modular, extensible Discord bot with community-specific flavors",
   "main": "index.js",
   "scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js",
-  "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
-  "lint": "eslint src/**/*.ts"
+    "deploy": "ts-node src/config/deploy-commands.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "clear-global": "ts-node src/config/clear-global-commands.ts"
 },
   "repository": {
     "type": "git",

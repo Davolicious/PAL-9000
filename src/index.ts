@@ -1,5 +1,8 @@
 import { Client, GatewayIntentBits, Collection } from 'discord.js';
 import * as dotenv from 'dotenv';
+import { ExtendedClient } from './types';
+import { loadCommands } from './commands';
+import { loadEvents } from './events';
 
 dotenv.config();
 
@@ -11,10 +14,12 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildPresences,
   ],
-});
+}) as ExtendedClient;
 
-client.once('ready', () => {
-  console.log(`✅ PAL-9000 is online as ${client.user?.tag}`);
-});
+async function main(): Promise<void> {
+  await loadCommands(client);
+  loadEvents(client);
+  await client.login(process.env.DISCORD_TOKEN);
+}
 
-client.login(process.env.DISCORD_TOKEN);
+main().catch(console.error);
