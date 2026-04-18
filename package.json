@@ -10,7 +10,7 @@
     "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
     "lint": "eslint src/**/*.ts",
     "clear-global": "ts-node src/config/clear-global-commands.ts"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Davolicious/PAL-9000.git"
@@ -26,10 +26,12 @@
   "devDependencies": {
     "@types/node": "^25.6.0",
     "nodemon": "^3.1.14",
+    "prisma": "^6.19.3",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "discord.js": "^14.26.2",
     "dotenv": "^17.4.1"
   }

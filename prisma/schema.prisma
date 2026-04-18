@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Guild {
+  id        String   @id
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rolePanels RolePanel[]
+}
+
+model RolePanel {
+  id          String   @id @default(cuid())
+  guildId     String
+  channelId   String
+  messageId   String
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  guild Guild  @relation(fields: [guildId], references: [id])
+  roles PanelRole[]
+}
+
+model PanelRole {
+  id          String   @id @default(cuid())
+  panelId     String
+  roleId      String
+  label       String
+  description String?
+  emoji       String?
+  createdAt   DateTime @default(now())
+
+  panel RolePanel @relation(fields: [panelId], references: [id])
+}
