@@ -9,9 +9,10 @@ export async function loadCommands(client: ExtendedClient): Promise<void> {
   const commandsPath = path.join(__dirname);
 
   // Load root level command files
-  const commandFiles = fs.readdirSync(commandsPath).filter(
-    file => file.endsWith('.ts') && file !== 'index.ts'
-  );
+  const ext = __filename.endsWith('.ts') ? '.ts' : '.js';
+const commandFiles = fs.readdirSync(commandsPath).filter(
+  file => file.endsWith(ext) && file !== `index${ext}`
+);
 
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
@@ -28,7 +29,7 @@ export async function loadCommands(client: ExtendedClient): Promise<void> {
   );
 
   for (const folder of subfolders) {
-    const indexPath = path.join(commandsPath, folder, 'index.ts');
+    const indexPath = path.join(commandsPath, folder, `index${ext}`);
     if (fs.existsSync(indexPath)) {
       const command = await import(indexPath);
       if ('data' in command && 'execute' in command) {
